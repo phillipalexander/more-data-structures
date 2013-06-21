@@ -24,10 +24,19 @@ var makeLinkedList = function(){
   };
 
   newLinkedList.contains = function(value){
+    var checkNodeForValue = function(node, target) {
+      if(this.node.value === target) {
+        return true;
+      }
+    };
 
+    var result = checkNodeForValue(this.head, value);
 
-
+    return result;
   };
+
+
+
 
   return newLinkedList;
 };
