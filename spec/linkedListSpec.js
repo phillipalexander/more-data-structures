@@ -24,7 +24,6 @@ describe("linkedList", function() {
     expect(linkedList.removeHead()).toEqual(2);
     linkedList.addToTail(4);
     expect(linkedList.removeHead()).toEqual(3);
-    //expect(linkedList.contains).toEqual(jasmine.any(Function));
   });
 
   it("should return a boolean if the list contains a value", function() {
@@ -32,9 +31,8 @@ describe("linkedList", function() {
     linkedList.addToTail(2);
     linkedList.addToTail(3);
     //debugger;
-    expect(linkedList.contains(3)).toEqual(true);
+    expect(linkedList.contains(2)).toEqual(true);
     expect(linkedList.contains(4)).toEqual(false);
-    //expect(linkedList.contains).toEqual(jasmine.any(Function));
   });
 
 

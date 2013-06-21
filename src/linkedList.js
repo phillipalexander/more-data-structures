@@ -24,15 +24,18 @@ var makeLinkedList = function(){
   };
 
   newLinkedList.contains = function(value){
+    // sub-routine to recursively go through all the nodes to check values
     var checkNodeForValue = function(node, target) {
-      if(this.node.value === target) {
+      if(node.value === target) {
         return true;
+      } else if(node.next === null) {
+        return false;
+      } else {
+        return checkNodeForValue(node.next, target);
       }
     };
 
-    var result = checkNodeForValue(this.head, value);
-
-    return result;
+    return checkNodeForValue(this.head, value);
   };
 
 
