@@ -38,9 +38,6 @@ var makeLinkedList = function(){
     return checkNodeForValue(this.head, value);
   };
 
-
-
-
   return newLinkedList;
 };
 
