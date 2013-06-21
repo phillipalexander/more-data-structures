@@ -1,15 +1,29 @@
 var makeTree = function(){
-  var newTree = {};
-  newTree.value = undefined;
-  newTree.children = undefined;
+  var newTree = {
+    value : undefined,
+    children : undefined,
+    addChild : treeMethods.addChild,
+    contains : treeMethods.contains
+  };
 
+  //return _.extend(newTree, treeMethods);
   return newTree;
 };
 
-var treeMethods = {};
+var treeMethods = {
+  addChild : function(value){
+    
+  },
 
-treeMethods.addChild = function(){
+  contains : function(value){
+  }
 };
 
-treeMethods.contains = function(){
-};
+
+/*
+A tree class, in functional with shared methods style, with the following properties:
+
+.children property, an array containing a number of subtrees
+.addChild() method, takes any value, sets that as the target of a node, and adds that node as a child of the tree
+A .contains() method, takes any input and returns a boolean reflecting whether it can be found as the value of the target node or any descendant node
+*/
