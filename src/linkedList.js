@@ -18,9 +18,15 @@ var makeLinkedList = function(){
   };
 
   newLinkedList.removeHead = function(){
+    var headToBeChoppedOff = this.head;
+    this.head = this.head.next;
+    return headToBeChoppedOff.value;
   };
 
   newLinkedList.contains = function(value){
+
+
+
   };
 
   return newLinkedList;
