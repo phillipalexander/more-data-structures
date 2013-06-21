@@ -12,7 +12,9 @@ var makeTree = function(){
 
 var treeMethods = {
   addChild : function(value){
-    
+    var newNode = makeTree();
+    newNode.value = value;
+    this.children.push(newNode);
   },
 
   contains : function(value){
@@ -27,3 +29,12 @@ A tree class, in functional with shared methods style, with the following proper
 .addChild() method, takes any value, sets that as the target of a node, and adds that node as a child of the tree
 A .contains() method, takes any input and returns a boolean reflecting whether it can be found as the value of the target node or any descendant node
 */
+
+treeNode = {
+  value: null,
+  children: [ ]
+}
+
+treeNode = {
+  value: null,
+  children:
