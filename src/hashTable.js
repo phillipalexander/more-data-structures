@@ -1,6 +1,9 @@
 var HashTable = function(){
   this._limit = 8;
 
+  // ========== Using the 'new' keyword removes the need for this line  ==========
+  // this.prototype = Object.create(HashTable.prototype);
+
   // Use a limited array to store inserted elements.
   // It'll keep you from using too much space. Usage:
   //
@@ -8,15 +11,22 @@ var HashTable = function(){
   //   limitedArray.get(3); // alerts 'hi'
   //
   this._storage = makeLimitedArray(this._limit);
+
+  // ========== Using the 'new' keyword removes the need for this line  ==========
+  // return this
 };
 
-HashTable.prototype.insert = function(){
+HashTable.prototype.insert = function(key, value){
+  var index = getIndexBelowMaxForKey(key, this._limit);
+  this._storage.set(index, value);
 };
 
-HashTable.prototype.retrieve = function(){
+HashTable.prototype.retrieve = function(key){
+  var index = getIndexBelowMaxForKey(key, this._limit);
+  return this._storage.get(index);
 };
 
-HashTable.prototype.remove = function(){
+HashTable.prototype.remove = function(key){
 };
 
 // NOTE: For this code to work, you will NEED the code from hashTableHelpers.js
