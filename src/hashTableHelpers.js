@@ -24,14 +24,7 @@ var makeLimitedArray = function(limit){
     storage[index] = value;
   };
 
-  // HashTable.prototype.remove is unable to access the storage array directly
-  // so here is a method that takes an index (NOT a key) and removes the element at that index
-  // and returns the value at the index removed
-
-  // btw, don't write code your browser can't cache.
-  limitedArray.remove = function(index){
-    return storage.slice(index,1);
-  };
+  limitedArray._storage = storage;
 
   var checkLimit = function(index){
     if(typeof index !== 'number'){ throw new Error('setter requires a numeric index for its first argument'); }

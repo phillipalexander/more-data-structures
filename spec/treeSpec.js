@@ -20,7 +20,6 @@ describe("tree", function() {
     tree.addChild(5);
     tree.addChild(7);
     tree.addChild(9);
-    debugger;
     expect(tree.contains(7)).toEqual(true);
   });
 

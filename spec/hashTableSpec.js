@@ -12,18 +12,23 @@ describe("hashTable", function() {
   });
 
   it("should be able to insert a key:value pair and retrieve the value using the key", function() {
-    hashTable.insert('dogs',15);
-    hashTable.insert('penguin','really cool!');   // tests to make sure it's not just popping any key
-    expect(hashTable.retrieve('dogs')).toEqual(15);
+    hashTable.insert('a','avengers');
+    hashTable.insert('b','batman');
+    hashTable.insert('c','catch me if you can');
+    hashTable.insert('d','dances with wolves');
+    debugger;
+    console.log(hashTable);
+    expect(hashTable.retrieve('b')).toEqual('batman');
+    expect(hashTable.retrieve('g')).toEqual(undefined);
   });
 
-  it("given a key:value pair, remove the pair and return the value", function() {
-    hashTable.insert('dogs',15);
-    hashTable.insert('whale',666);
-    hashTable.insert('penguin','really cool!');   // tests to make sure it's not just popping any key
-    expect(hashTable.remove('whale')).toEqual(666);
-    expect(hashTable.retrieve('whale')).toEqual(undefined);
-  });
+  // it("should given a key:value pair, remove the pair and return the value", function() {
+  //   hashTable.insert('dogs',15);
+  //   hashTable.insert('whale',666);
+  //   hashTable.insert('penguin','really cool!');   // tests to make sure it's not just popping any key
+  //   expect(hashTable.remove('whale')).toEqual(666);
+  //   expect(hashTable.retrieve('whale')).toEqual(undefined);
+  // });
 
   // test for lack of collisions
 
