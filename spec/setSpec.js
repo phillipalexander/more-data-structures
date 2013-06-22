@@ -5,12 +5,30 @@ describe("set", function() {
     set = makeSet();
   });
 
+// overview
+
   it("should have methods named 'add', 'contains', and 'remove'", function() {
     expect(set.add).toEqual(jasmine.any(Function));
     expect(set.contains).toEqual(jasmine.any(Function));
     expect(set.remove).toEqual(jasmine.any(Function));
   });
+
+ //add method
+  describe(".add", function() {
+    it("should add a value to the set", function() {
+      expect(set.add(5)).toEqual([5]);
+    });
+    it("should add multiple values to the set", function() {
+      set.add(5);
+      expect(set.add(3)).toEqual([5,3]);
+    });
+  });
 });
+
+
+
+
+
 
 
 /*
