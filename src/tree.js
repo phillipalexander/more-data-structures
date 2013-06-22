@@ -1,45 +1,37 @@
-var makeTree = function(){
+var makeTree = function(value){
   var newTree = {
-    _value : undefined,
+    _value : value,
     _children : [],
     addChild : treeMethods.addChild,
     contains : treeMethods.contains
   };
 
-  // console.log(newTree);
-  //return _.extend(newTree, treeMethods);
+  //return _.extend(newTree, treeMethods);  // if you wanted to use extend instead of declaring independently
   return newTree;
 };
 
 var treeMethods = {
   addChild : function(value){
-    var newNode = makeTree();
-    newNode._value = value;
-    this._children.push(newNode);
-    return newNode;
+    return this._children.push(makeTree(value));
   },
 
   contains : function(value){
+    var result = false;
 
-      //subroutine
-      var checkNodeForValue = function(node, target) {
-        var result = false;
-        if(node._value === target) {
-          result = true;
-          return result;
-        } else if (node._children.length === 0) {
-          return result;
-        } else {
-          for (var i = 0; i < node._children.length; i++) {
-            result = result || checkNodeForValue(node._children[i], target);
-          }
-        }
-        return result;
-      };
-      return checkNodeForValue(this, value);
+    if(this._value === value) {
+      result = true;
+      return result;
+    } else if (this._children.length === 0) {
+      return result;
+    } else {
+      for (var i = 0; i < this._children.length; i++) {
+        result = result || this._children[i].contains(value);
+      }
     }
+    return result;
+  }
 
-  };
+};
 
 
 /*
