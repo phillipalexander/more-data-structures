@@ -17,6 +17,14 @@ describe("hashTable", function() {
     expect(hashTable.retrieve('dogs')).toEqual(15);
   });
 
+  it("given a key:value pair, remove the pair and return the value", function() {
+    hashTable.insert('dogs',15);
+    hashTable.insert('whale',666);
+    hashTable.insert('penguin','really cool!');   // tests to make sure it's not just popping any key
+    expect(hashTable.remove('whale')).toEqual(666);
+    expect(hashTable.retrieve('whale')).toEqual(undefined);
+  });
+
   // test for lack of collisions
 
   // add more tests here to test the functionality of hashTable
