@@ -18,15 +18,11 @@ var treeMethods = {
   contains : function(value){
     var result = false;
 
-    if(this._value === value) {
-      result = true;
-      return result;
-    } else if (this._children.length === 0) {
-      return result;
-    } else {
-      for (var i = 0; i < this._children.length; i++) {
-        result = result || this._children[i].contains(value);
-      }
+    if (this._value === value) {
+      return true;
+    }
+    for (var i = 0; i < this._children.length; i++) {
+      result = result || this._children[i].contains(value);
     }
     return result;
   }
