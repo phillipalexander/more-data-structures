@@ -16,11 +16,17 @@ describe("set", function() {
  //add method
   describe(".add", function() {
     it("should add a value to the set", function() {
-      expect(set.add(5)).toEqual([5]);
+      expect(set.add("bob")).toEqual(["\"bob\""]);
+    });
+    it("should convert input numbers to strings and store them as strings", function() {
+      expect(set.add(5)).toEqual(['5']);
+    });
+    it("should convert input booleans to strings and store them as strings", function() {
+      expect(set.add(true)).toEqual(['true']);
     });
     it("should add multiple values to the set", function() {
       set.add(5);
-      expect(set.add(3)).toEqual([5,3]);
+      expect(set.add(3)).toEqual(['5','3']);
     });
   });
 });

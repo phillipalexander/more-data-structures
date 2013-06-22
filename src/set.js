@@ -7,6 +7,7 @@ var makeSet = function() {
 makeSet.setMethods = {
 
   add: function(value) {
+    value = JSON.stringify(value);
     if (this.contains(value) === false) {
       this._storage.push(value);
     }
