@@ -27,6 +27,9 @@ HashTable.prototype.retrieve = function(key){
 };
 
 HashTable.prototype.remove = function(key){
+  var valueFromRemoved = this.retrieve(key);
+  this.insert(key, undefined);
+  return valueFromRemoved;
 };
 
 // NOTE: For this code to work, you will NEED the code from hashTableHelpers.js
