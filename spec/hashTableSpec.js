@@ -56,7 +56,7 @@ describe("hashTable", function() {
     hashTable.insert('bbb','boston');
     hashTable.insert('ccc','chicago');
     hashTable.insert('ddd','durham');
-    debugger;
+    //debugger;
     expect(hashTable.retrieve('b')).toEqual('batman');
   });
 

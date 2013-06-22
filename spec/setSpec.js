@@ -16,7 +16,7 @@ describe("set", function() {
  //add method
   describe(".add", function() {
     it("should add a value to the set", function() {
-      expect(set.add("bob")).toEqual(["\"bob\""]);
+      expect(set.add("bob")).toEqual(['bob']);
     });
     it("should convert input numbers to strings and store them as strings", function() {
       expect(set.add(5)).toEqual(['5']);
@@ -28,7 +28,37 @@ describe("set", function() {
       set.add(5);
       expect(set.add(3)).toEqual(['5','3']);
     });
+    it("should, given a value that already exists in the set, not create a duplicate", function() {
+      set.add(5);
+      set.add(4);
+      expect(set.add(5)).toEqual(['5','4']);
+    });
   });
+
+  describe(".remove", function() {
+    it("should remove a value from a set", function() {
+      set.add('candi');
+      set.add('angel');
+      set.add('sheri');
+      expect(set.remove('sheri')).toEqual(['candi','angel']);
+    });
+    it("should, if provided an input, will stringify the input and remove the corresponding string value from the set", function() {
+      set.add(5);
+      set.add(4);
+      set.add(3);
+      set.add(2);
+      expect(set.remove(5)).toEqual(["4","3","2"]);
+    });
+    it("should not remove anything if there is no corresponding value to remove", function() {
+      set.add(5);
+      set.add(4);
+      set.add(3);
+      set.add(2);
+      expect(set.remove(true)).toEqual(["5","4","3","2"]);
+    });
+  });
+
+
 });
 
 
