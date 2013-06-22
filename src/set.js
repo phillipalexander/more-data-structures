@@ -1,10 +1,10 @@
 var makeSet = function(){
-  var set = Object.create(set.prototype); // fix me
+  var set = Object.create(makeSet.setMethods);
   set._storage = undefined;
   return set;
 };
 
-set.prototype = {
+makeSet.setMethods = {
 
   add : function(){
   },
@@ -16,5 +16,3 @@ set.prototype = {
   }
 
 };
-
-
