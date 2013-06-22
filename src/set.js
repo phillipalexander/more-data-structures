@@ -8,7 +8,12 @@ makeSet.setMethods = {
 
   add: function() {},
 
-  contains: function() {},
+  contains: function(value) {
+    if (this.getIndex(value) < 0) {
+      return false;
+    }
+    return true;
+  },
 
   remove: function() {},
 
