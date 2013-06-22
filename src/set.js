@@ -6,10 +6,15 @@ var makeSet = function() {
 
 makeSet.setMethods = {
 
-  add: function() {},
+  add: function(value) {
+    if (this.contains(value) === false) {
+      this._storage.push(value);
+    }
+    return this._storage;
+  },
 
   contains: function(value) {
-    if (this.getIndex(value) < 0) {
+    if (this._getIndex(value) < 0) {
       return false;
     }
     return true;
@@ -17,7 +22,7 @@ makeSet.setMethods = {
 
   remove: function() {},
 
-  getIndex: function(value) {
+  _getIndex: function(value) {
     for (var i = 0; i < this._storage.length; i++) {
       if (this._storage[i] === value) {
         return i;
