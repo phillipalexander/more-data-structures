@@ -16,8 +16,21 @@ describe("hashTable", function() {
     hashTable.insert('b','batman');
     hashTable.insert('c','catch me if you can');
     hashTable.insert('d','dances with wolves');
+    hashTable.insert('aa','aadvark');
+    hashTable.insert('bb','bat');
+    hashTable.insert('cc','cockroach');
+    hashTable.insert('dd','duck');
     expect(hashTable.retrieve('b')).toEqual('batman');
     expect(hashTable.retrieve('g')).toEqual(undefined);
+  });
+
+  it("given a key:value pair, it will overwrite existing key:value pairs", function() {
+    hashTable.insert('a','avengers');
+    hashTable.insert('b','batman');
+    hashTable.insert('c','catch me if you can');
+    hashTable.insert('d','dances with wolves');
+    hashTable.insert('a','atomic bomb');
+    expect(hashTable.retrieve('a')).toEqual('atomic bomb');
   });
 
   it("should given a key:value pair, remove the pair and return the value", function() {
@@ -25,10 +38,43 @@ describe("hashTable", function() {
     hashTable.insert('whale',666);
     hashTable.insert('penguin','really cool!');   // tests to make sure it's not just popping any key
     expect(hashTable.remove('whale')).toEqual(666);
-    //expect(hashTable.retrieve('whale')).toEqual(undefined);
+    expect(hashTable.retrieve('whale')).toEqual(undefined);
   });
 
   // test for lack of collisions
+
+  it("should be able to account for collisions", function() {
+    hashTable.insert('a','avengers');
+    hashTable.insert('b','batman');
+    hashTable.insert('c','catch me if you can');
+    hashTable.insert('d','dances with wolves');
+    hashTable.insert('aa','aadvark');
+    hashTable.insert('bb','bat');
+    hashTable.insert('cc','cockroach');
+    hashTable.insert('dd','duck');
+    hashTable.insert('aaa','alexandria');
+    hashTable.insert('bbb','boston');
+    hashTable.insert('ccc','chicago');
+    hashTable.insert('ddd','durham');
+    debugger;
+    expect(hashTable.retrieve('b')).toEqual('batman');
+  });
+
+  it("should be able to account for collisions", function() {
+    hashTable.insert('a','avengers');
+    hashTable.insert('b','batman');
+    hashTable.insert('c','catch me if you can');
+    hashTable.insert('d','dances with wolves');
+    hashTable.insert('aa','aadvark');
+    hashTable.insert('bb','bat');
+    hashTable.insert('cc','cockroach');
+    hashTable.insert('dd','duck');
+    hashTable.insert('aaa','alexandria');
+    hashTable.insert('bbb','boston');
+    hashTable.insert('ccc','chicago');
+    hashTable.insert('ddd','durham');
+    expect(hashTable.retrieve('b')).toEqual('batman');
+  });
 
   // add more tests here to test the functionality of hashTable
 });

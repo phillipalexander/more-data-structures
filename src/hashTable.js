@@ -1,5 +1,5 @@
-var HashTable = function() {
-  this._limit = 8;
+var HashTable = function(limit) {
+  this._limit = limit || 8;
   this._storage = makeLimitedArray(this._limit);
   this._count = 0;
 };
@@ -11,37 +11,57 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(key, value) {
   var index = getIndexBelowMaxForKey(key, this._limit);
+  var subIndex = this.getKeySubIndex(key, index);
   var allKeyValuePairsThatMatchHashedKey = this._storage.get(index);
-  if (allKeyValuePairsThatMatchHashedKey === undefined) {
+
+  if (allKeyValuePairsThatMatchHashedKey === undefined) {   // if it is completely new
     this._storage.set(index, [[key, value]]);
+    this._count++;
+  } else if(subIndex>-1) {                 // if there's an exisiting key
+    if(value===undefined) {
+      allKeyValuePairsThatMatchHashedKey.splice(subIndex,1);
+      if(allKeyValuePairsThatMatchHashedKey.length===0) {
+        this._count--;
+      }
+    }
+    else {
+      var newPair = [key, value];
+      allKeyValuePairsThatMatchHashedKey.splice(subIndex,1,newPair);
+    }
+    this._storage.set(index,allKeyValuePairsThatMatchHashedKey);
   } else {
     this._storage.get(index).push([key, value]);
-    console.log(this._storage.get(index));
   }
-  this._count++;
 };
 
 HashTable.prototype.retrieve = function(key) {
   var index = getIndexBelowMaxForKey(key, this._limit);
+  var subIndex = this.getKeySubIndex(key,index);
+  var allKeyValuePairsThatMatchHashedKey = this._storage.get(index);
+
+  if(subIndex>-1) {
+    return allKeyValuePairsThatMatchHashedKey[subIndex][1];
+  }
+  console.log("Key " , key , " not found in hash.");
+  return undefined;
+};
+
+HashTable.prototype.getKeySubIndex = function(key, index){
   var allKeyValuePairsThatMatchHashedKey = this._storage.get(index);
 
   if(typeof allKeyValuePairsThatMatchHashedKey !== 'undefined') {
     for(var i=0; i<allKeyValuePairsThatMatchHashedKey.length; i++) {
       if(allKeyValuePairsThatMatchHashedKey[i][0]===key) {
-        return allKeyValuePairsThatMatchHashedKey[i][1];
+        return i;
       }
     }
   }
-  else {
-    console.log("Key not existent.");
-    return undefined;
-  }
+  return -1;
 };
 
 HashTable.prototype.remove = function(key) {
   var valueFromRemoved = this.retrieve(key);
   this.insert(key, undefined);
-  this._count--;
   return valueFromRemoved;
 };
 
@@ -49,7 +69,7 @@ HashTable.prototype.checkUsage = function() {
   var usage = this._count/this._limit;
   if(usage >= 0.75) {
     console.log("Used " , usage , " of hash table.");
-    return false;
+    return true;
   }
   return false;
 };
@@ -60,14 +80,19 @@ HashTable.prototype.extend = function() {
     return;
   }
   else {
-    this._limit = this._limit*2;
-    newHash = makeLimitedArray(this._limit);
+    var oldLimit = this._limit;
+    newHash = new HashTable(oldLimit*2);
 
-    _.each(this._storage, function(element, index) {
-      if(Array.isArray(element)) {
-        console.log("Array found at position " , index);
+    for(var i=0; i<oldLimit; i++) {
+      var subArr = this._storage.get(i);
+      if(Array.isArray(subArr)) {
+        _.each(subArr, function(pair) {
+          newHash.insert(pair[0],pair[1]);
+        });
       }
-    });
+    }
+    console.log("Hash table extended.");
+    console.log(newHash);
   }
 };
 
