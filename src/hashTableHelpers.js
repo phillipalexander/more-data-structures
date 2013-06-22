@@ -12,7 +12,7 @@
 //   limitedArray.get(3); // returns 'hi'
 
 var makeLimitedArray = function(limit){
-  var storage = [];
+  var storage = new Array(limit);
 
   var limitedArray = {};
   limitedArray.get = function(index){

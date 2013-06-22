@@ -56,11 +56,12 @@ describe("hashTable", function() {
     hashTable.insert('bbb','boston');
     hashTable.insert('ccc','chicago');
     hashTable.insert('ddd','durham');
-    //debugger;
-    expect(hashTable.retrieve('b')).toEqual('batman');
+    expect(hashTable.retrieve('ccc')).toEqual('chicago');
+    expect(hashTable.remove('aaa')).toEqual('alexandria');
+    expect(hashTable.remove('aaa')).toEqual(undefined);
   });
 
-  it("should be able to account for collisions", function() {
+  it("should be able to resize the hash table", function() {
     hashTable.insert('a','avengers');
     hashTable.insert('b','batman');
     hashTable.insert('c','catch me if you can');
@@ -73,9 +74,12 @@ describe("hashTable", function() {
     hashTable.insert('bbb','boston');
     hashTable.insert('ccc','chicago');
     hashTable.insert('ddd','durham');
-    expect(hashTable.retrieve('b')).toEqual('batman');
+    hashTable.insert('aaaa','argentina');
+    hashTable.insert('bbbb','boliva');
+    hashTable.insert('cccc','cuba');
+    hashTable.insert('dddd','denmark');
+    expect(hashTable.retrieve('cccc')).toEqual('cuba');
   });
-
   // add more tests here to test the functionality of hashTable
 });
 
