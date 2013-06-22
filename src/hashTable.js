@@ -81,18 +81,17 @@ HashTable.prototype.extend = function() {
   }
   else {
     var oldLimit = this._limit;
-    newHash = new HashTable(oldLimit*2);
+    newHash = makeLimitedArray(oldLimit*2);
 
     for(var i=0; i<oldLimit; i++) {
       var subArr = this._storage.get(i);
       if(Array.isArray(subArr)) {
         _.each(subArr, function(pair) {
-          newHash.insert(pair[0],pair[1]);
+          //newHash.insert(pair[0],pair[1]);      // can't use insert because it's not defined
+          console.log(pair);
         });
       }
     }
-    console.log("Hash table extended.");
-    console.log(newHash);
   }
 };
 
