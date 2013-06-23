@@ -4,10 +4,26 @@ var list = function(){
   newLinkedList.head = null;
   newLinkedList.tail = null;
 
+  list.addToHead = function(){
+
+
+  };
+
   list.addToTail = function(){
   };
 
   list.removeHead = function(){
+    list.head = list.head.next;
+    if(list.head) {
+      list.head.previous = null;
+    }
+    if(list.head===null) {
+      list.tail = null;
+    }
+  };
+
+  list.removeTail = function(){
+
   };
 
   list.contains = function(){
